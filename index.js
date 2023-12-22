@@ -11,6 +11,7 @@ const connectDB = require("./connectMongo");
 connectDB();
 
 const BookModel = require("./models/book.model");
+const Student = require("./models/student.model");
 
 
 
@@ -50,6 +51,21 @@ app.get("/api/v1/books", async (req, res) => {
   }
 });
 
+
+app.get("/student/getStudent", async (req, res) => {
+  try {
+    const students = await Student.find();
+    if (students.length > 0) {
+      res.status(200).json({
+        message: students
+      });
+    }
+  } catch (err) {
+    res.status(404).json({
+      error: err
+    });
+  }
+});
 
 app.get("/api/v1/books/:id", async (req, res) => {
   try {
