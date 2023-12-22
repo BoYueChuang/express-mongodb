@@ -11,9 +11,7 @@ const connectDB = require("./connectMongo");
 connectDB();
 
 const BookModel = require("./models/book.model");
-const studentRoutes = require('./models/student/student.routes');
 
-app.use("/student", studentRoutes);
 
 
 app.get("/api/v1/books", async (req, res) => {
