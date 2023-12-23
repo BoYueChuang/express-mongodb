@@ -67,6 +67,35 @@ app.get("/student/getStudent", async (req, res) => {
   }
 });
 
+
+app.post("/student/addStudent", async (req, res) => {
+  try {
+    const studentObj = new Student({
+      _id: new mongoose.Types.ObjectId(),
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email
+    });
+
+    const newStudent = await studentObj.save();
+    if (newStudent) {
+      res.status(200).json({
+        message: "Student Added..!!",
+        newStudent
+      });
+    } else (err) => {
+      res.status(500).json({
+        message: "Student not Added..!!",
+        error: err
+      });
+    }
+  } catch (err) {
+    res.json({
+      error: err
+    });
+  }
+});
+
 app.get("/api/v1/books/:id", async (req, res) => {
   try {
     const data = await BookModel.findById(req.params.id);
