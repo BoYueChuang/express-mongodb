@@ -33,8 +33,7 @@ app.post("/student/addStudent", async (req, res) => {
   try {
     const studentObj = new Student({
       _id: new mongoose.Types.ObjectId(),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      name: req.body.name,
       email: req.body.email
     });
     const newStudent = await studentObj.save();
