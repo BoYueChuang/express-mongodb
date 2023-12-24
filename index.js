@@ -48,25 +48,12 @@ app.post("/student/addStudent", async (req, res) => {
   }
 });
 
-app.get("/api/v1/books/:id", async (req, res) => {
-  try {
-    const data = await BookModel.findById(req.params.id);
+app.get("/student/getId/:id", async (req, res) => {
+  const student1 = await Student.findById(req.params.id);
 
-    if (data) {
-      return res.status(200).json({
-        msg: "Ok",
-        data,
-      });
-    }
-
-    return res.status(404).json({
-      msg: "Not Found",
-    });
-  } catch (error) {
-    return res.status(500).json({
-      msg: error.message,
-    });
-  }
+  res.status(200).json({
+    message: student1
+  });
 });
 
 
