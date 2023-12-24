@@ -1,8 +1,12 @@
 const express = require("express");
+const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const connectDB = require("./connectMongo");
 app.use(express.json());
+
+
+app.use(cors()); // 啟用 CORS
 
 connectDB();
 
